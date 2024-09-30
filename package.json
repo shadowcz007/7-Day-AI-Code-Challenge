@@ -1,0 +1,14 @@
+{
+  "name": "7dayaicodechallenge",
+  "version": "1.0.0",
+  "description": "One small step each day, one giant leap in code.",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8000"
+  },
+  "author": "shadow",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
