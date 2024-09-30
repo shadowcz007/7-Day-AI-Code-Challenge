@@ -29,7 +29,7 @@
             cursor: pointer;
         }
 
-        #resultCanvas {
+        #resultCanvas,#resultImg {
             max-width: 100%;
             border: 2px solid #003399;
             display: none;
@@ -53,12 +53,14 @@
     <input type="file" id="fileInput" accept="image/*" style="display: none;">
     <button id="uploadButton">上传头像</button>
     <canvas id="resultCanvas"></canvas>
+    <img id="resultImg" />
     <a id="downloadButton" download="国庆节头像.png">下载头像</a>
 
     <script>
         const fileInput = document.getElementById('fileInput');
         const uploadButton = document.getElementById('uploadButton');
         const resultCanvas = document.getElementById('resultCanvas');
+        const resultImg=document.getElementById('resultImg')
         const downloadButton = document.getElementById('downloadButton');
         const ctx = resultCanvas.getContext('2d');
 
@@ -99,9 +101,10 @@
             const flag = new Image();
             flag.onload = function () {
                 ctx.drawImage(flag, 0, 0, size, size);
-                resultCanvas.style.display = 'block';
+                resultImg.style.display = 'block';
                 downloadButton.style.display = 'block';
                 downloadButton.href = resultCanvas.toDataURL('image/png');
+                resultImg.src=downloadButton.href
             }
             // 请将此URL替换为实际的红旗图片URL
             flag.src = 'flag001.png'
