@@ -5,10 +5,9 @@ import * as Font from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 
-import Config from 'react-native-config';
+const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
-
-const authorization='Bearer '+Config.API_KEY
+const authorization='Bearer '+API_KEY
 
 const quotes = [
   "生命不息,奋斗不止。 - 雷锋",
@@ -25,7 +24,7 @@ const backgrounds = [
 // 存储数据
 const storeData = async (key, value) => {
   try {
-    await AsyncStorage.setItem(key, value);
+    if(value)  await AsyncStorage.setItem(key, value);
     console.log('Data stored successfully');
   } catch (e) {
     console.error('Failed to save the data to the storage', e);
@@ -214,7 +213,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     textShadowColor: '#585858', // 阴影颜色
     textShadowOffset: { width: 1, height: 1 }, // 阴影偏移
-    textShadowRadius: 1, // 阴影模糊半径
+    textShadowRadius: 2 // 阴影模糊半径
   },
   date: {
     fontFamily: 'ink-free',
@@ -224,7 +223,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textShadowColor: '#585858', // 阴影颜色
     textShadowOffset: { width: 1, height: 1 }, // 阴影偏移
-    textShadowRadius: 1, // 阴影模糊半径
+    textShadowRadius: 2, // 阴影模糊半径
   },
   quote: {
     fontFamily: 'ink-free',
@@ -235,6 +234,6 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     textShadowColor: '#585858', // 阴影颜色
     textShadowOffset: { width: 1, height: 1 }, // 阴影偏移
-    textShadowRadius: 1, // 阴影模糊半径
+    textShadowRadius: 2, // 阴影模糊半径
   },
 });

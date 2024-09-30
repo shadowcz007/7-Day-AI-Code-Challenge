@@ -4,3 +4,4 @@
 [Day 01](https://shadowcz007.github.io/7-Day-AI-Code-Challenge/NationalDayAvatar)
 
 [Day 02]()
+https://docs.expo.dev/guides/environment-variables/
