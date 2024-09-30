@@ -202,14 +202,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width:'70%',
     marginTop:48,
-    textShadowColor:'black',
-    textShadowOffset:3
+  
   },
   time: {
     fontFamily: 'ink-free',
     fontSize: 60,
     color: '#fff',
     textAlign: 'left',
+    textShadowColor: '#585858', // 阴影颜色
+    textShadowOffset: { width: 1, height: 1 }, // 阴影偏移
+    textShadowRadius: 1, // 阴影模糊半径
   },
   date: {
     fontFamily: 'ink-free',
@@ -217,13 +219,19 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'left',
     marginTop: 10,
+    textShadowColor: '#585858', // 阴影颜色
+    textShadowOffset: { width: 1, height: 1 }, // 阴影偏移
+    textShadowRadius: 1, // 阴影模糊半径
   },
   quote: {
     fontFamily: 'ink-free',
-    fontSize: 16,
+    fontSize: 18,
     color: '#fff',
     textAlign: 'left',
     marginTop: 20,
     fontStyle: 'italic',
+    textShadowColor: '#585858', // 阴影颜色
+    textShadowOffset: { width: 1, height: 1 }, // 阴影偏移
+    textShadowRadius: 1, // 阴影模糊半径
   },
 });
