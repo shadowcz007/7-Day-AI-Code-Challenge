@@ -29,7 +29,8 @@
             cursor: pointer;
         }
 
-        #resultCanvas, #resultImg {
+        #resultCanvas,
+        #resultImg {
             max-width: 100%;
             border: 2px solid #003399;
             display: none;
@@ -48,6 +49,38 @@
 
         #template-selector {
             margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .template-option {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .template-option img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .preview-image {
+            background-image: url('base.png');
+            background-size: cover;
+        }
+
+        @media (max-width: 600px) {
+            .template-option {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .template-option img {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
@@ -56,12 +89,24 @@
     <h1>国庆节头像合成器</h1>
     <div id="template-selector">
         <label for="template">选择模板:</label>
-        <select id="template">
-            <option value="flag001.png">模板 1</option>
-            <option value="flag002.png">模板 2</option>
-            <option value="flag003.png">模板 3</option>
-            <!-- Add more templates as needed -->
-        </select>
+        <div class="template-option">
+            <input type="radio" name="template" value="flag001.png" id="template1" checked>
+            <label for="template1">
+                <img src="flag001.png" alt="模板 1" class="preview-image"></label>
+        </div>
+        <div class="template-option">
+            <input type="radio" name="template" value="flag002.png" id="template2">
+            <label for="template2"><img src="flag002.png" class="preview-image" alt="模板 2"></label>
+        </div>
+        <div class="template-option">
+            <input type="radio" name="template" value="flag003.png" id="template3">
+            <label for="template3"><img src="flag003.png" class="preview-image" alt="模板 3"></label>
+        </div>
+        <div class="template-option">
+            <input type="radio" name="template" value="flag004.png" id="template4">
+            <label for="template4"><img src="flag004.png" class="preview-image" alt="模板 4"></label>
+        </div>
+        <!-- Add more templates as needed -->
     </div>
     <input type="file" id="fileInput" accept="image/*" style="display: none;">
     <button id="uploadButton">上传头像</button>
@@ -75,7 +120,7 @@
         const resultCanvas = document.getElementById('resultCanvas');
         const resultImg = document.getElementById('resultImg');
         const downloadButton = document.getElementById('downloadButton');
-        const templateSelector = document.getElementById('template');
+        const templateSelector = document.getElementsByName('template');
         const ctx = resultCanvas.getContext('2d');
 
         uploadButton.addEventListener('click', (e) => {
@@ -103,13 +148,13 @@
             resultCanvas.height = size;
 
             // 绘制用户头像
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2, true);
-            ctx.closePath();
-            ctx.clip();
+            // ctx.save();
+            // ctx.beginPath();
+            // ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2, true);
+            // ctx.closePath();
+            // ctx.clip();
             ctx.drawImage(img, 0, 0, size, size);
-            ctx.restore();
+            // ctx.restore();
 
             // 绘制红旗
             const flag = new Image();
@@ -121,7 +166,8 @@
                 resultImg.src = downloadButton.href;
             }
             // 使用选择的模板作为红旗图片URL
-            flag.src = templateSelector.value;
+            const selectedTemplate = Array.from(templateSelector).find(radio => radio.checked).value;
+            flag.src = selectedTemplate;
         }
     </script>
 </body>
