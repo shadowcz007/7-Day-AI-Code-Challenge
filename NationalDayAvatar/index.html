@@ -29,7 +29,7 @@
             cursor: pointer;
         }
 
-        #resultCanvas,#resultImg {
+        #resultCanvas, #resultImg {
             max-width: 100%;
             border: 2px solid #003399;
             display: none;
@@ -45,11 +45,24 @@
             cursor: pointer;
             display: none;
         }
+
+        #template-selector {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
 <body>
     <h1>国庆节头像合成器</h1>
+    <div id="template-selector">
+        <label for="template">选择模板:</label>
+        <select id="template">
+            <option value="flag001.png">模板 1</option>
+            <option value="flag002.png">模板 2</option>
+            <option value="flag003.png">模板 3</option>
+            <!-- Add more templates as needed -->
+        </select>
+    </div>
     <input type="file" id="fileInput" accept="image/*" style="display: none;">
     <button id="uploadButton">上传头像</button>
     <canvas id="resultCanvas"></canvas>
@@ -60,14 +73,16 @@
         const fileInput = document.getElementById('fileInput');
         const uploadButton = document.getElementById('uploadButton');
         const resultCanvas = document.getElementById('resultCanvas');
-        const resultImg=document.getElementById('resultImg')
+        const resultImg = document.getElementById('resultImg');
         const downloadButton = document.getElementById('downloadButton');
+        const templateSelector = document.getElementById('template');
         const ctx = resultCanvas.getContext('2d');
 
         uploadButton.addEventListener('click', (e) => {
-            e.preventDefault()
-            fileInput.click()
+            e.preventDefault();
+            fileInput.click();
         });
+
         fileInput.addEventListener('change', handleImage);
 
         function handleImage(e) {
@@ -83,7 +98,6 @@
         }
 
         function drawImage(img) {
-            
             const size = 300;
             resultCanvas.width = size;
             resultCanvas.height = size;
@@ -104,14 +118,11 @@
                 resultImg.style.display = 'block';
                 downloadButton.style.display = 'block';
                 downloadButton.href = resultCanvas.toDataURL('image/png');
-                resultImg.src=downloadButton.href
+                resultImg.src = downloadButton.href;
             }
-            // 请将此URL替换为实际的红旗图片URL
-            flag.src = 'flag001.png'
+            // 使用选择的模板作为红旗图片URL
+            flag.src = templateSelector.value;
         }
-
-        // uploadButton.addEventListener('click', () => fileInput.click());
-        // fileInput.addEventListener('change', handleImage);
     </script>
 </body>
 
