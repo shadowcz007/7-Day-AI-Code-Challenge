@@ -5,7 +5,10 @@ import * as Font from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 
-const authorization='Bearer sk-oltkusgsnumobtwyyngpvwplsttlruczyzapgivjtvuulwgw'
+import Config from 'react-native-config';
+
+
+const authorization='Bearer '+Config.API_KEY
 
 const quotes = [
   "生命不息,奋斗不止。 - 雷锋",
